@@ -64,6 +64,15 @@ A web API for Fenix project.
 ### Register Member [POST]
 
 註冊會員資料。
+
++ type (string,required) - register type(basic,facebook,wechat)
++ email (string) - user's email, must unique.
++ password (string) - hashed password came along with email
++ unique_id (string) - user unique id retrivel from provider(facebook,wechat)
++ product_code (string,required) - the QRcode attached on product
++ phone_id (string,required)
++ bbt_id (string,required)
+
    
 + Error Code
     + 101 product_code is used.
@@ -72,15 +81,7 @@ A web API for Fenix project.
     + 202 unique id is conflict.
     + 301 required data is missing.
     + 302 misc.
-    
-+ Attributes
-    + type (string,required) - register type(basic,facebook,wechat)
-    + email (string) - user's email, must unique.
-    + password (string) - hashed password came along with email
-    + unique_id (string) - user unique id retrivel from provider(facebook,wechat)
-    + product_code (string,required) - the QRcode attached on product
-    + phone_id (string,required)
-    + bbt_id (string,required)
+
 
 
 + Request (application/json)
@@ -107,7 +108,7 @@ A web API for Fenix project.
         }
 
   
-+ Request (application/json)
++ Request (application/json) 
 
 
     + Body
