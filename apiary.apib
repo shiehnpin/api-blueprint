@@ -1,0 +1,610 @@
+FORMAT: 1A
+HOST: flame-dev.1n1.hk
+
+# Fenix
+
+A web API for Fenix project.
+
+
+# Group Client API v1
+
+## Common Attributes 
+
++ `bbt_id`溫度計ID
+
+    toUpper(sha1(toUpper(XX:XX:XX:XX:XX:XX_1N1_BBT)))
+
+    PlainText:
+    
+        XX:XX:XX:XX:XX:XX_1N1_BBT
+    Hash:
+    
+        56CDB9A741552F7EECB3FC215814A8B617B99E5D
+
++ `phone_id` 手機ID
+
+    toUpper(sha1(toUpper(XX:XX:XX:XX:XX:XX_1N1_PHONE)))
+    
+    PlainText:
+    
+        XX:XX:XX:XX:XX:XX_1N1_PHONE
+    Hash:
+    
+        3879F289A08E2B62E4AF452183C600F0B91A1CAC
+
++ `product_code` 產品代碼
+
+    隨產品附的`product_code`，algorithm=`toUpper(sha1(haoyunlai_SN))`
+    
+    PlainText:
+    
+        haoyunlai_1
+    Hash:
+    
+        AFC4E7CCABD9583DCA2F563DB1A9419A39E817D0
+
++ `confirm_code` 認證代碼
+
+    toUpper(sha1(`phone_id`_TIMESTAMP))，TIMESTAMP是UTC時間(LONG)
+    
+    PlainText:
+    
+        3879F289A08E2B62E4AF452183C600F0B91A1CAC_1429698217
+    Hash:
+    
+        4D5A551FEE05398F6B7B2FAAE3427DD8CF584E2C
+
+
+
+
+## Active Account [/v1/activate]
+
+啟用產品。
+
++ Error Code
+    + 101 product_code is used.
+    + 102 product_code invalid
+    + 103 misc.
+
+
++ Attributes 
+    + product_code (string,required)
+    + phone_id (string,required)
+    + bbt_id (string,required)
+
+
+
+### Active Account [POST]
+
+
+
++ Request (application/json)
+
+
+    + Body
+
+            {
+                "product_code": "1111111111111111111111111111111111111111",
+                "phone_id": "463346c80ec6f0cb0101b72db51d79f4a78c5999",
+                "bbt_id":"317060aa70a5a9e8460261106ff8bc05a2f162b4"
+            }
+
++ Response 200 (application/json)
+
+        {
+            "activated_at":"2006-01-02T15:04:05Z"
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "code":101
+        }
+
+## Register Member [/v1/member/register]
+
+使用者註冊會員帳戶，輸入E-mail和密碼以及相關資料。
+
++ Error Code
+    + 100 not Authorized.
+    + 104 already registered
+    + 105 email duplicated
+    + 106 column missing
+
++ Attributes
+    + phone_id (string,required) 
+    + email:xieenping.goodix.com (string,required)  - User's email
+    + passwd (string,required)  - User's password hash.
+    + first_name:`En-Ping` (string,required)  - User's first name
+    + last_name:Hsieh (string,required) - User's last name
+    + birthday:`1988-12-15` (string,required) - User's birthday
+
+### Register Member [POST]
+
++ Request (application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
+    + Body 
+
+            {
+                "email":"xieenping.icecream@gmail.com",
+                "password":"da39a3ee5e6b4b0d3255bfef95601890afd80709",
+                "first_name":"En-Ping",
+                "last_name":"Hsieh",
+                "birthday":"1988-12-15"
+            }
+
++ Response 200 (application/json)
+            
+            {
+                "registered_at":"2015-04-25T12:55:44Z"
+            }
+
++ Response 400 (application/json)
+
+            {
+                "code":104
+            }
+
+## Member Profile [/v1/member/profile]
+
+抓取、修改使用者資料。
+
++ Error Code
+    + 100 not Authorized.
+    + 105 email duplicated
+    + 106 column missing
+
++ Attributes
+    + phone_id (string,required) 
+    + email:xieenping.goodix.com (string,optional)  - User's email
+    + passwd (string,optional)  - User's password hash. 
+    + first_name:`En-Ping` (string,optional)  - User's first name
+    + last_name:Hsieh (string,optional) - User's last name
+    + birthday:`1988-12-15` (string,optional) - User's birthday
+
+### Push Profile [POST]
+
++ Request (application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
+    + Body 
+
+            {
+                "email":"xieenping.icecream@goodix.com",
+                "password":"317060aa70a5a9e8460261106ff8bc05a2f162b4",
+                "first_name":"En-Ping",
+                "last_name":"Hsieh",
+                "birthday":"1988-12-15"
+            }
+
++ Response 200
+    
+        {
+            "modified_at":"2015-04-25T12:55:44Z"
+        }
+
++ Response 400 (application/json)
+
+            {
+                "code":106
+            }
+
+### Pull Profile [GET]
+
++ Request (application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
++ Response 200
+
+    + Body 
+
+            {
+                "email":"xieenping.icecream@gmail.com",
+                "first_name":"En-Ping",
+                "last_name":"Hsieh",
+                "birthday":"1988-12-15"
+            }
+
++ Response 400 (application/json)
+
+            {
+                "code":105
+            }
+
+
+
+## Account Status [/v1/status]
+
+檢查手機是否啟用過。
+
++ Attributes 
+    + phone_id (string,required) 
+
+### Account Status [POST]
+
++ Request (application/json)
+
+    + Body 
+
+            {
+                "phone_id":"463346c80ec6f0cb0101b72db51d79f4a78c5999"
+            }
+
++ Response 200 (application/json)
+
+            {
+                "is_activated":true,
+                "activated_at":"2006-01-02T15:04:05Z",
+                "registered_at":"0000-00-00T00:00:00Z",
+                "bbt_id":"F2C425FCD9522F3B9CDC6BC5A27CB70D208AE919"
+            }
+
+
+## Confirm Email [/v1/member/confirm{?code}]
+
+確認信箱。
+
++ Error Code
+    + 107 confirm_code is expired.
+    + 106 column missing
+
++ Attributes
+    + code (string,required) - confirm_code
+
+### Confirm Email [GET]
+
++ Parameters
+    + code (string,required) ... confirm_code
+    
++ Response 200 (application/json)
+
+        {
+            "is_email_veified":true
+        }
+
++ Response 400 (application/json)
+
+        {
+            "code":106
+        }
+
+
+## Reset Password [/v1/member/reset]
+
+使用者修改密碼。
+
++ Error Code
+    + 106 column missing
+
++ Attributes 
+    + email:xieenping.goodix.com (string,required) 
+
+### Reset Password [POST]
+
++ Request (application/json)
+
+    + Body 
+
+            {
+                "email":"xieenping.icecream@goodix.com",
+            }
+
++ Response 200 
+
++ Response 400 (application/json)
+
+            {
+                "code":106
+            }
+
+## Sync Records [/v1/member/records]
+
+同步溫度記錄。
+
++ Error Code
+    + 301 invaild phone_id
+    + 302 invaild parameter  
+    
+
++ Attributes 
+    + phone_id (string,required) 
+    + measured_date:`2015-04-22` (string,required) - 紀錄發生的時間。
+    + created_at:`2015-04-22T15:04:00Z` (string,required) - 建立記錄的時間。 
+    + modified_at:`2015-04-22T15:04:00Z` (string,optional) - 最後修改記錄的時間，預設為建立記錄的時間。 
+    + degrees (number,optional) - 單位0.01度C
+    + measured_at:`2015-04-22T15:04:00Z` (string,optional) - 當手動輸入時以使用者輸入為主，若是BBT傳來則以BBT傳來為主。
+    + `is_from_bbt`:true (boolean,optional)
+    + is_medicine:true (boolean,optional)
+    + is_alcohol:true (boolean,optional)
+    + is_fever:true (boolean,optional)
+    + is_sex:true (boolean,optional)
+
+### Push Records [POST]
+
+上傳溫度，`measured_at`, `degrees`, `is_from_bbt` 三者需要同時存在。
+
++ Request Insert or Edit(application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
+    + Body 
+
+            {
+                "2015-01-02":{
+                    "measured_date":"2015-01-02",
+                    "created_at":"2006-01-02T15:04:05Z",
+                    "modified_at":"2006-01-02T15:04:05Z",
+                    "degrees":3700,         
+                    "measured_at":"2006-01-02T15:04:05Z",
+                    "is_from_bbt":true,
+                    "is_medicine":true,
+                    "is_alcohol":true,
+                    "is_fever":true,
+                    "is_sex":true,
+                    "note":"say something..."
+                },
+                "2015-01-03":{
+                    "measured_date":"2015-01-03",
+                    "created_at":"2006-01-03T15:04:05Z",
+                    "modified_at":"2006-01-03T15:04:05Z",
+                    "degrees":3680,         
+                    "measured_at":"2006-01-03T15:04:05Z",
+                    "is_from_bbt":true,
+                    "is_medicine":false,
+                    "is_alcohol":false,
+                    "is_fever":true,
+                    "is_sex":true
+                }
+            }
+
++ Request Delete (application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
+    + Body 
+
+            {
+                "2015-01-02T15:04:05Z":null
+            }
+
+
++ Response 200 (application/json)
+
+            {
+                "sync_at":"2009-07-22T12:55:44Z"
+            }
+
++ Response 400
+
+### Pull Records [GET]
+
++ Request 2 Month Records(application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
++ Response 200 (application/json)
+
+
+            {
+                "2015-01-02":{
+                    "measured_date":"2015-01-02",
+                    "created_at":"2006-01-02T15:04:05Z",
+                    "modified_at":"2006-01-02T15:04:05Z",
+                    "degrees":3700,         
+                    "measured_at":"2006-01-02T15:04:05Z",
+                    "is_from_bbt":true,
+                    "is_medicine":true,
+                    "is_alcohol":true,
+                    "is_fever":true,
+                    "is_sex":true,
+                    "note":"say something..."
+                },
+                "2015-01-03":{
+                    "measured_date":"2015-01-03",
+                    "created_at":"2006-01-03T15:04:05Z",
+                    "modified_at":"2006-01-03T15:04:05Z",
+                    "degrees":3680,         
+                    "measured_at":"2006-01-03T15:04:05Z",
+                    "is_from_bbt":true,
+                    "is_medicine":false,
+                    "is_alcohol":false,
+                    "is_fever":true,
+                    "is_sex":true
+                }
+            }
+
++ Response 400
+
+
+## Sync Periods [/v1/member/periods]
+
+同步溫度記錄。
+
++ Error Code
+    + 301 invaild phone_id
+    + 302 invaild parameter  
+    
+
++ Attributes 
+    + phone_id (string,required) 
+    + id (string,required) - 唯一的識別。
+    + date_at:`2015-04-22` (string,required) - 週期開始的時間。
+    + `is_human_input`:true (boolean,required) 
+    + `is_init`:false (boolean,required)
+    + `is_type_started`:true (boolean,required)
+
+### Push Periods [POST]
+
++ Request Insert or Edit(application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
+    + Body 
+
+            {
+                "1":{
+                    "id":"1",
+                    "date_at":"2015-01-02",
+                    "is_human_input":true,
+                    "is_init":false,
+                    "is_type_started":true
+                },
+                "2":{
+                    "id":"2",
+                    "date_at":"2015-02-03",
+                    "is_human_input":true,
+                    "is_init":false,
+                    "is_type_started":false
+                }
+
+            }
+
++ Request Delete (application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
+    + Body 
+
+            {
+                "3":null
+            }
+
+
++ Response 200 (application/json)
+
+            {
+                "sync_at":"2009-07-22T12:55:44Z"
+            }
+
++ Response 400
+
+### Pull Periods [GET]
+
++ Request Periods(application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
++ Response 200 (application/json)
+
+
+            {
+                "1":{
+                    "id":"1",
+                    "started_at":"2015-01-02",
+                    "ended_at":"2006-01-02"
+                },
+                "2":{
+                    "id":"2",
+                    "started_date":"2015-02-03",
+                    "ended_at":null
+                }
+            }
+
++ Response 400
+
+
+## Sync Settings [/v1/member/settings]
+
+同步BBT設定。
+
++ Attributes 
+    + phone_id (string,required) 
+    + alarm_sound_vol:0 (number,required) - 0 as OFF, 1 as min, 2 as med, 3 as max 
+    + alarm_at:"15:04:00" (string,required) - UTC time
+    + is_backlight:true (boolean,required) 
+    + sync_sound_vol:3 (number,required) - 0 as OFF, 1 as min, 2 as med, 3 as max
+    + modified_at:`2006-01-02T15:04:05Z` (string,required)
+
+### Push Settings [POST]
+
++ Request (application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
+    + Body 
+
+            {
+                "alarm_sound_vol": 1,
+                "sync_sound_vol": 1,
+                "alarm_at":"12:55:00", 
+                "is_backlight":true,
+                "modified_at":"2009-07-22T12:55:44Z"  
+            }
+
++ Response 200 (application/json)
+
+            {
+                "sync_at":"2009-07-22T12:55:44Z"
+            }
+
++ Response 400
+
+            {
+                "code":301
+            }
+
+### Pull Settings [GET]
+
++ Request (application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
+
++ Response 200 (application/json)
+
+
+            {
+                "alarm_sound_vol": 1,
+                "sync_sound_vol": 1,
+                "alarm_at":"12:55:00", 
+                "is_backlight":true,
+                "modified_at":"2009-07-22T12:55:44Z"  
+            }
+
++ Response 400
+
+            {
+                "code":301
+            }
+            
+## Reset Product [/v1/reset/{product_id}]
+
+重置產品，相依的使用者將會被移除
+
++ Parameters
+    + product_id:2f390799bc9153d3eb1599aa148a3e8b44a13c88
+
+### Reset [GET]
+
++ Response 200
+
+
+
+
+
