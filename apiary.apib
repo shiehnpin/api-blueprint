@@ -127,6 +127,44 @@ A web API for Fenix project.
             "description": "required data is missing"
         }
 
+## Member Profile [/v1/member/{member_id}]
+
+**digest** = hmac(sha1 , secrete, Method+URI+timestamp)
+
++ Parameters
+    + member_id:ac1ab23d6288711be64a25bf13432baf1e60b2bd (string, required) - user uuid.
+
+### Get Profile [GET]
+
+取得會員資料
+
++ phone_id (string)  - user's current register phone id.
++ bbt_id (string) - user's current register bbt id.
++ first_name:`En-Ping` (string)  - User's first name
++ last_name:Hsieh (string) - User's last name
++ birthday:`1988-12-15` (string) - User's birthday  
++ is_allow_migrate:true (bool) 
++ registered_at:`2015-04-25T12:55:44Z` (string)
++ synced_at:`2015-04-25T12:55:44Z` (string)
++ modified_at:`2015-04-25T12:55:44Z` (string)
+
+
++ Request (application/json)
+
+    + Header
+
+            Authorization: ac1ab23d6288711be64a25bf13432baf1e60b2bd:[digest]
+
++ Response 200
+
+    + Body 
+
+            {   
+                "first_name":"En-Ping",
+                "last_name":"Hsieh",
+                "birthday":"1988-12-15"
+            }  
+
 
 
 
