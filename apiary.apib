@@ -97,7 +97,7 @@ A web API for Fenix project.
 
     + Attributes (Status)
     + Attributes 
-        + uuid:123 (string,required) 
+        + member_id:123 (string,required) 
         + secret:123 (string,required)
         + activated_at:`2015-01-02T15:04:05Z` (string,required)
 
@@ -117,13 +117,12 @@ A web API for Fenix project.
 ## Profile [/v1/members/{member_id}]
 
 + Parameter
-    + member_id:aaa (string)
+    + member_id:123 (string)
 
 
-### Get Member Profile [GET]
+### Get Profile [GET]
 
 + Request (application/json)
-
 
     + Headers
     
@@ -133,6 +132,7 @@ A web API for Fenix project.
 
     + Attributes (Register Info)
     + Attributes
+        + status:ok (string,required)
         + first_name:`en-ping` (string,required)
         + last_name:hsieh (string,required)
         + birthday:`1988-12-15` (string,required)
@@ -140,6 +140,24 @@ A web API for Fenix project.
         + registered_at:`2015-01-02T15:04:05Z` (string,required)
         + synced_at:`2015-01-02T15:04:05Z` (string,required)
         + modified_at:`2015-01-02T15:04:05Z` (string,required)
+        
+        
+### Modified Profile [PUT]
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: 123:digest
+            
+    + Attributes
+        + first_name:`en-ping` (string)
+        + last_name:hsieh (string)
+        + birthday:`1988-12-15` (string)
+
++ Response 200 (application/json)
+        
+
         
 
         
