@@ -63,7 +63,7 @@ A web API for Fenix project.
         + product_code (string,required) - the QRcode attached on product
     
 
-+ Response 200 (application/json)
++ Response Success (application/json)
 
     + Attributes (Status)
     + Attributes 
@@ -72,14 +72,7 @@ A web API for Fenix project.
         + registered_at:`2015-01-02T15:04:05Z` (string,required)
 
 
-+ Request Fail Register (application/json)
-
-    + Attributes
-        + email:aaa@aaa (string,required) - user's email, must unique.
-        + password:dawkkopa (string,required) - hashed password came along with email.        
-        + product_code:123 (string,required) - the QRcode attached on product
-    
-+ Response 200 (application/json)
++ Response Fail (application/json)
 
     + Attributes (Err)
 
