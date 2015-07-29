@@ -72,7 +72,7 @@ A web API for Fenix project.
 + phone_id:123 (string,required)
 + bbt_id:123 (string,required)
 
-
+# Group URI Resource
 
 ## Member [/v1/members]
 
@@ -99,7 +99,7 @@ A web API for Fenix project.
     + Attributes 
         + member_id:123 (string,required) 
         + secret:123 (string,required)
-        + activated_at:`2015-01-02T15:04:05Z` (string,required)
+        + registered_at:`2015-01-02T15:04:05Z` (string,required)
 
 
 + Request Fail Register (application/json)
@@ -133,9 +133,9 @@ A web API for Fenix project.
     + Attributes (Register Info)
     + Attributes
         + status:ok (string,required)
-        + first_name:`en-ping` (string,required)
-        + last_name:hsieh (string,required)
-        + birthday:`1988-12-15` (string,required)
+        + first_name:`en-ping` (string)
+        + last_name:hsieh (string)
+        + birthday:`1988-12-15` (string)
         + `is_allow_migrate`:true (boolean,required)
         + registered_at:`2015-01-02T15:04:05Z` (string,required)
         + synced_at:`2015-01-02T15:04:05Z` (string,required)
@@ -156,15 +156,149 @@ A web API for Fenix project.
         + birthday:`1988-12-15` (string)
 
 + Response 200 (application/json)
-
     
     + Attributes
         + status:ok (string,required)
         + modified_at:`2015-01-02T15:04:05Z` (string,required)
 
-        
 
-        
+## Product Status [/v1/product/{product_code}]
+
+檢查啟動碼是否啟用過。
+
++ Parameters
+    + product_code (string,required) 
+
+### Get Product Code Status [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (Status)
+    + Attributes 
+        + type:full (string,required) `full`,`limited`,`upgrade`
+        + is_activated:true
+        + activated_at:`2006-01-02T15:04:05Z`
 
 
+## Sync Records [/v1/member/{member_id}/records]
 
+同步溫度記錄。
+
++ Parameter
+    + member_id:123 (string)
+    
+
++ Attributes 
+    + phone_id (string,required) 
+    + measured_date:`2015-04-22` (string,required) - 紀錄發生的時間。
+    + created_at:`2015-04-22T15:04:00Z` (string,required) - 建立記錄的時間。 
+    + modified_at:`2015-04-22T15:04:00Z` (string,optional) - 最後修改記錄的時間，預設為建立記錄的時間。 
+    + degrees (number,optional) - 單位0.01度C
+    + measured_at:`2015-04-22T15:04:00Z` (string,optional) - 當手動輸入時以使用者輸入為主，若是BBT傳來則以BBT傳來為主。
+    + `is_from_bbt`:true (boolean,optional)
+    + is_medicine:true (boolean,optional)
+    + is_alcohol:true (boolean,optional)
+    + is_fever:true (boolean,optional)
+    + is_sex:true (boolean,optional)
+    + note (string,optional)
+
+### Push Records [POST]
+
+
++ Request Insert or Edit(application/json)
+
+    + Headers
+    
+            Authorization: 123:digest
+
+    + Body 
+
+            {
+                "2015-01-02":{
+                    "measured_date":"2015-01-02",
+                    "created_at":"2006-01-02T15:04:05Z",
+                    "modified_at":"2006-01-02T15:04:05Z",
+                    "degrees":3700,         
+                    "measured_at":"2006-01-02T15:04:05Z",
+                    "is_from_bbt":true,
+                    "is_medicine":true,
+                    "is_alcohol":true,
+                    "is_fever":true,
+                    "is_sex":true,
+                    "note":"say something..."
+                },
+                "2015-01-03":{
+                    "measured_date":"2015-01-03",
+                    "created_at":"2006-01-03T15:04:05Z",
+                    "modified_at":"2006-01-03T15:04:05Z",
+                    "degrees":3680,         
+                    "measured_at":"2006-01-03T15:04:05Z",
+                    "is_from_bbt":true,
+                    "is_medicine":false,
+                    "is_alcohol":false,
+                    "is_fever":true,
+                    "is_sex":true
+                }
+            }
+
++ Request Delete (application/json)
+
+    + Headers
+    
+            Authorization: 123:digest
+
+    + Body 
+
+            {
+                "2015-01-02T15:04:05Z":null
+            }
+
+
++ Response 200 (application/json)
+
+        + Attributes (Status)
+        + Attributes
+            sync_at:`2009-07-22T12:55:44Z`
+
+
+### Get Records [GET]
+
++ Request 2 Month Records(application/json)
+
+    + Headers
+    
+            Authorization: 123:digest
+
++ Response 200 (application/json)
+
+        + Attributes (Status)
+
+        + Body
+
+            {
+                "2015-01-02":{
+                    "measured_date":"2015-01-02",
+                    "created_at":"2006-01-02T15:04:05Z",
+                    "modified_at":"2006-01-02T15:04:05Z",
+                    "degrees":3700,         
+                    "measured_at":"2006-01-02T15:04:05Z",
+                    "is_from_bbt":true,
+                    "is_medicine":true,
+                    "is_alcohol":true,
+                    "is_fever":true,
+                    "is_sex":true,
+                    "note":"say something..."
+                },
+                "2015-01-03":{
+                    "measured_date":"2015-01-03",
+                    "created_at":"2006-01-03T15:04:05Z",
+                    "modified_at":"2006-01-03T15:04:05Z",
+                    "degrees":3680,         
+                    "measured_at":"2006-01-03T15:04:05Z",
+                    "is_from_bbt":true,
+                    "is_medicine":false,
+                    "is_alcohol":false,
+                    "is_fever":true,
+                    "is_sex":true
+                }
+            }
