@@ -5,54 +5,6 @@ HOST: flame-dev.1n1.hk
 
 A web API for Fenix project.
 
-
-# Group Client API v1
-
-## Common Attributes 
-
-+ `bbt_id`溫度計ID
-
-    toUpper(sha1(toUpper(XX:XX:XX:XX:XX:XX_1N1_BBT)))
-
-    PlainText:
-    
-        XX:XX:XX:XX:XX:XX_1N1_BBT
-    Hash:
-    
-        56CDB9A741552F7EECB3FC215814A8B617B99E5D
-
-+ `phone_id` 手機ID
-
-    toUpper(sha1(toUpper(XX:XX:XX:XX:XX:XX_1N1_PHONE)))
-    
-    PlainText:
-    
-        XX:XX:XX:XX:XX:XX_1N1_PHONE
-    Hash:
-    
-        3879F289A08E2B62E4AF452183C600F0B91A1CAC
-
-+ `product_code` 產品代碼
-
-    隨產品附的`product_code`，algorithm=`toUpper(sha1(haoyunlai_SN))`
-    
-    PlainText:
-    
-        haoyunlai_1
-    Hash:
-    
-        AFC4E7CCABD9583DCA2F563DB1A9419A39E817D0
-
-+ `confirm_code` 認證代碼
-
-    toUpper(sha1(`phone_id`_TIMESTAMP))，TIMESTAMP是UTC時間(LONG)
-    
-    PlainText:
-    
-        3879F289A08E2B62E4AF452183C600F0B91A1CAC_1429698217
-    Hash:
-    
-        4D5A551FEE05398F6B7B2FAAE3427DD8CF584E2C
         
 # Data Structures
 
@@ -395,3 +347,51 @@ A web API for Fenix project.
                 }
             }
         }
+        
+# Group Appendix
+
+## Common Attributes 
+
++ `bbt_id`溫度計ID
+
+    toUpper(sha1(toUpper(XX:XX:XX:XX:XX:XX_1N1_BBT)))
+
+    PlainText:
+    
+        XX:XX:XX:XX:XX:XX_1N1_BBT
+    Hash:
+    
+        56CDB9A741552F7EECB3FC215814A8B617B99E5D
+
++ `phone_id` 手機ID
+
+    toUpper(sha1(toUpper(XX:XX:XX:XX:XX:XX_1N1_PHONE)))
+    
+    PlainText:
+    
+        XX:XX:XX:XX:XX:XX_1N1_PHONE
+    Hash:
+    
+        3879F289A08E2B62E4AF452183C600F0B91A1CAC
+
++ `product_code` 產品代碼
+
+    隨產品附的`product_code`，algorithm=`toUpper(sha1(haoyunlai_SN))`
+    
+    PlainText:
+    
+        haoyunlai_1
+    Hash:
+    
+        AFC4E7CCABD9583DCA2F563DB1A9419A39E817D0
+
++ `confirm_code` 認證代碼
+
+    toUpper(sha1(`phone_id`_TIMESTAMP))，TIMESTAMP是UTC時間(LONG)
+    
+    PlainText:
+    
+        3879F289A08E2B62E4AF452183C600F0B91A1CAC_1429698217
+    Hash:
+    
+        4D5A551FEE05398F6B7B2FAAE3427DD8CF584E2C
