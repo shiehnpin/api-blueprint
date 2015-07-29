@@ -82,7 +82,7 @@ A web API for Fenix project.
 註冊會員資料。
 
 
-+ Request
++ Request (application/json)
     
     + Attributes (Register)
     + Attributes
@@ -97,7 +97,14 @@ A web API for Fenix project.
         + uuid:123 (string,required) 
         + secret:123 (string,required)
         + activated_at:`2015-01-02T15:04:05Z` (string,required)
-       
+
++ Request (application/json)
+    
+    + Attributes
+        + email:aaa@aaa (string,required) - user's email, must unique.
+        + password:dawkkopa (string,required) - hashed password came along with email.        + product_code (string,required) - the QRcode attached on product
+    
+     
 + Response 200
 
         {
