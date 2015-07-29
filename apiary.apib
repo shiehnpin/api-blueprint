@@ -53,9 +53,18 @@ A web API for Fenix project.
     Hash:
     
         4D5A551FEE05398F6B7B2FAAE3427DD8CF584E2C
+        
+# Data Structures
 
+## Status (object)
 
++ status:ok (string)
 
+## Profile (object)
+
++ first_name (string)
++ last_name (string)
++ birthday (string)
 
 ## Member [/v1/members]
 
@@ -65,27 +74,15 @@ A web API for Fenix project.
 
 註冊會員資料。
 
-+ type (string,required) - register type(basic,facebook,wechat)
-+ email (string) - user's email, must unique.
-+ password (string) - hashed password came along with email
-+ unique_id (string) - user unique id retrivel from provider(facebook,wechat)
-+ product_code (string,required) - the QRcode attached on product
-+ phone_id (string,required)
-+ bbt_id (string,required)
 
-   
-+ Error Code
-    + 101 product_code is used.
-    + 102 product_code invalid.
-    + 201 email has beend used.
-    + 202 unique id is conflict.
-    + 301 required data is missing.
-    + 302 misc.
-
-
-
-+ Request (application/json)
-
++ Request
+    
+    + Attributes
+        + type (string,required) - register type(basic,facebook,wechat)
+        + email (string,required) - user's email, must unique.
+        + password (string,required) - hashed password came along with email.        + product_code (string,required) - the QRcode attached on product
+        + phone_id (string,required)
+        + bbt_id (string,required)
 
     + Body
 
@@ -99,13 +96,9 @@ A web API for Fenix project.
             }
 
 + Response 200 (application/json)
-
-        {
-            "status": "ok",
-            "uuid": "ac1ab23d6288711be64a25bf13432baf1e60b2bd",
-            "secret": "46e1e3a09fdef54687cd839eddd3a1ed8602398d",
-            "activated_at":"2015-01-02T15:04:05Z"
-        }
+    
+    + Attributes
+        + Status (object)
 
   
 + Request (application/json) 
@@ -119,53 +112,13 @@ A web API for Fenix project.
                 "password": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
             } 
        
-+ Response 200 (application/json)
++ Response 200
 
         {
             "status": "bad",
             "error_code": 102,
             "description": "required data is missing"
         }
-
-## Member Profile [/v1/member/{member_id}]
-
-**digest** = hmac(sha1 , secrete, Method+URI+timestamp)
-
-+ Parameters
-    + member_id:ac1ab23d6288711be64a25bf13432baf1e60b2bd (string, required) - user uuid.
-
-### Get Profile [GET]
-
-取得會員資料
-
-+ phone_id (string)  - user's current register phone id.
-+ bbt_id (string) - user's current register bbt id.
-+ first_name:`En-Ping` (string)  - User's first name
-+ last_name:Hsieh (string) - User's last name
-+ birthday:`1988-12-15` (string) - User's birthday  
-+ is_allow_migrate:true (bool) 
-+ registered_at:`2015-04-25T12:55:44Z` (string)
-+ synced_at:`2015-04-25T12:55:44Z` (string)
-+ modified_at:`2015-04-25T12:55:44Z` (string)
-
-
-+ Request (application/json)
-
-    + Header
-
-            Authorization: ac1ab23d6288711be64a25bf13432baf1e60b2bd:[digest]
-
-+ Response 200
-
-    + Body 
-
-            {   
-                "first_name":"En-Ping",
-                "last_name":"Hsieh",
-                "birthday":"1988-12-15"
-            }  
-
-
 
 
 
