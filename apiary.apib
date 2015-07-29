@@ -76,6 +76,30 @@ A web API for Fenix project.
 
     + Attributes (Err)
 
+## Login [/v1/login]
+
+註冊會員資料。
+
+### Register [POST]
+
+
++ Request Success Register (application/json)
+    
+    + Attributes
+        + type:basic (string,required) - register type(basic,facebook,wechat)
+        + email:aaa@aaa (string,required) - user's email, must unique.
+        + password:dawkkopa (string,required) - hashed password came along with email.
+        + phone_id:123 (string,required)
+    
+
++ Response 200 (application/json)
+
+    + Attributes (Status)
+    + Attributes 
+        + member_id:123 (string,required) 
+        + secret:123 (string,required)
+        + registered_at:`2015-01-02T15:04:05Z` (string,required)
+
 ## Member Profile [/v1/members/{member_id}]
 
 + Parameter
