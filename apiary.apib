@@ -60,23 +60,19 @@ A web API for Fenix project.
 
 + status:ok (string,required) - the resutl status(ok or err)
 
-## Error (object)
+## Err (object)
 
-+ error_code:102 (string,required)
-+ description:something goes wrong (string,required)
++ status:fail (string,required)
++ error_code:102 (number,required) - aa
++ description:something goes wrong (string,required) -aa
 
-## Register (object)
+## Register Info (object)
 
-+ type:basic (string,required) - register type(basic,facebook,wechat)
 + product_code:123 (string,required)
 + phone_id:123 (string,required)
 + bbt_id:123 (string,required)
 
-## Profile (object)
 
-+ first_name (string)
-+ last_name (string)
-+ birthday (string)
 
 ## Member [/v1/members]
 
@@ -89,8 +85,9 @@ A web API for Fenix project.
 
 + Request Success Register (application/json)
     
-    + Attributes (Register)
+    + Attributes (Register Info)
     + Attributes
+        + type:basic (string,required) - register type(basic,facebook,wechat)
         + email:aaa@aaa (string,required) - user's email, must unique.
         + password:dawkkopa (string,required) - hashed password came along with email.        
         + product_code (string,required) - the QRcode attached on product
@@ -110,14 +107,42 @@ A web API for Fenix project.
     + Attributes
         + email:aaa@aaa (string,required) - user's email, must unique.
         + password:dawkkopa (string,required) - hashed password came along with email.        
-        + product_code (string,required) - the QRcode attached on product
+        + product_code:123 (string,required) - the QRcode attached on product
     
 + Response 200 (application/json)
 
+    + Attributes (Err)
 
-    + Attributes (Status)
-    + Attributes (Error)
+
+## Profile [/v1/members/{member_id}]
+
++ Parameter
+    + member_id:aaa (string)
+
+
+### Get Member Profile [GET]
+
++ Request (application/json)
+
+
+    + Headers
+    
+            Authorization: 123:digest
+        
++ Response 200 (application/json)
+
+    + Attributes (Register Info)
     + Attributes
+        + first_name:`en-ping` (string,required)
+        + last_name:hsieh (string,required)
+        + birthday:`1988-12-15` (string,required)
+        + `is_allow_migrate`:true (boolean,required)
+        + registered_at:`2015-01-02T15:04:05Z` (string,required)
+        + synced_at:`2015-01-02T15:04:05Z` (string,required)
+        + modified_at:`2015-01-02T15:04:05Z` (string,required)
+        
+
+        
 
 
 
