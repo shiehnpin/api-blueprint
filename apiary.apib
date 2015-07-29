@@ -72,15 +72,33 @@ A web API for Fenix project.
 + phone_id:123 (string,required)
 + bbt_id:123 (string,required)
 
-# Group URI Resource
 
-## Member [/v1/members]
+# Group Product Code
 
-會員資料。
+## Product Status [/v1/product/{product_code}]
 
-### Register Member [POST]
+檢查啟動碼是否啟用過。
+
++ Parameters
+    + product_code (string,required) 
+
+### Get Product Code Status [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (Status)
+    + Attributes 
+        + type:full (string,required) `full`,`limited`,`upgrade`
+        + is_activated:true
+        + activated_at:`2006-01-02T15:04:05Z`
+
+# Group Member
+
+## Register [/v1/members]
 
 註冊會員資料。
+
+### Register [POST]
 
 
 + Request Success Register (application/json)
@@ -113,8 +131,7 @@ A web API for Fenix project.
 
     + Attributes (Err)
 
-
-## Profile [/v1/members/{member_id}]
+## Member Profile [/v1/members/{member_id}]
 
 + Parameter
     + member_id:123 (string)
@@ -162,22 +179,7 @@ A web API for Fenix project.
         + modified_at:`2015-01-02T15:04:05Z` (string,required)
 
 
-## Product Status [/v1/product/{product_code}]
 
-檢查啟動碼是否啟用過。
-
-+ Parameters
-    + product_code (string,required) 
-
-### Get Product Code Status [GET]
-
-+ Response 200 (application/json)
-
-    + Attributes (Status)
-    + Attributes 
-        + type:full (string,required) `full`,`limited`,`upgrade`
-        + is_activated:true
-        + activated_at:`2006-01-02T15:04:05Z`
 
 
 ## Sync Records [/v1/member/{member_id}/records]
@@ -368,9 +370,9 @@ A web API for Fenix project.
 
 + Request Periods(application/json)
 
-    + Header
-
-            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+    + Headers
+    
+            Authorization: 123:digest
 
 + Response 200 (application/json)
 
@@ -379,13 +381,17 @@ A web API for Fenix project.
             "periods":{
                 "1":{
                     "id":"1",
-                    "started_at":"2015-01-02",
-                    "ended_at":"2006-01-02"
+                    "date_at":"2015-01-02",
+                    "is_human_input":true,
+                    "is_init":false,
+                    "is_type_started":true
                 },
                 "2":{
                     "id":"2",
-                    "started_date":"2015-02-03",
-                    "ended_at":null
+                    "date_at":"2015-02-03",
+                    "is_human_input":true,
+                    "is_init":false,
+                    "is_type_started":false
                 }
             }
         }
