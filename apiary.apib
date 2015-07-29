@@ -60,6 +60,13 @@ A web API for Fenix project.
 
 + status:ok (string,required) - the resutl status(ok or err)
 
+## Register (object)
+
++ type:basic (string,required) - register type(basic,facebook,wechat)
++ product_code:123 (string,required)
++ phone_id (string,required)
++ bbt_id (string,required)
+
 ## Profile (object)
 
 + first_name (string)
@@ -77,42 +84,20 @@ A web API for Fenix project.
 
 + Request
     
+    + Attributes (Register)
     + Attributes
-        + type (string,required) - register type(basic,facebook,wechat)
         + email (string,required) - user's email, must unique.
         + password (string,required) - hashed password came along with email.        + product_code (string,required) - the QRcode attached on product
-        + phone_id (string,required)
-        + bbt_id (string,required)
-
-    + Body
-
-            {   
-                "type": "basic",
-                "email": "xieenping.icecream@gmail.com",
-                "password": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-                "product_code": "debugdebugdebugdebugdebugdebugdebugdebug",
-                "phone_id": "463346c80ec6f0cb0101b72db51d79f4a78c5999",
-                "bbt_id":"317060aa70a5a9e8460261106ff8bc05a2f162b4"
-            }
+    
 
 + Response 200 (application/json)
     
+
     + Attributes (Status)
     + Attributes 
         + uuid:123 (string,required) 
         + secret:123 (string,required)
-
-  
-+ Request (application/json) 
-
-
-    + Body
-
-            {   
-                "type": "basic",
-                "email": "xieenping.icecream@gmail.com",
-                "password": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
-            } 
+        + activated_at:`2015-01-02T15:04:05Z` (string,required)
        
 + Response 200
 
