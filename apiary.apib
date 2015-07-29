@@ -59,8 +59,7 @@ A web API for Fenix project.
     + Attributes
         + type:basic (string,required) - register type(basic,facebook,wechat)
         + email:aaa@aaa (string,required) - user's email, must unique.
-        + password:dawkkopa (string,required) - hashed password came along with email.        
-        + product_code (string,required) - the QRcode attached on product
+        + password:dawkkopa (string,required) - hashed password came along with email.
     
 
 + Response 200 (application/json)
@@ -71,8 +70,9 @@ A web API for Fenix project.
         + secret:123 (string,required)
         + registered_at:`2015-01-02T15:04:05Z` (string,required)
 
++ Request Fail Register (application/json)
 
-+ Response Fail (application/json)
++ Response 200 (application/json) 
 
     + Attributes (Err)
 
