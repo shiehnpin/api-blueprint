@@ -348,6 +348,61 @@ A web API for Fenix project.
             }
         }
         
+## Sync Settings [/v1/member/{member_id}/settings]
+
+同步BBT設定。
+
++ Attributes
+    + phone_id (string,required) 
+    + alarm_sound_vol:0 (number,required) - 0 as OFF, 1 as min, 2 as med, 3 as max 
+    + alarm_at:"15:04:00" (string,required) - UTC time
+    + is_backlight:true (boolean,required) 
+    + sync_sound_vol:3 (number,required) - 0 as OFF, 1 as min, 2 as med, 3 as max
+    + modified_at:`2006-01-02T15:04:05Z` (string,required)
+
+### Push Settings [POST]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Authorization: 123:digest
+
+
++ Response 200 (application/json)
+
+    + Attributes (Status)
+    + Body 
+
+            {
+                "alarm_sound_vol": 1,
+                "sync_sound_vol": 1,
+                "alarm_at":"12:55:00", 
+                "is_backlight":true,
+                "modified_at":"2009-07-22T12:55:44Z"  
+            }
+
+### Pull Settings [GET]
+
++ Request (application/json)
+
+    + Header
+
+            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+
+
++ Response 200 (application/json)
+
+
+            {
+                "alarm_sound_vol": 1,
+                "sync_sound_vol": 1,
+                "alarm_at":"12:55:00", 
+                "is_backlight":true,
+                "modified_at":"2009-07-22T12:55:44Z"  
+            }
+
+        
 # Group Appendix
 
 ## Common Attributes 
