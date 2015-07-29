@@ -64,8 +64,8 @@ A web API for Fenix project.
 
 + type:basic (string,required) - register type(basic,facebook,wechat)
 + product_code:123 (string,required)
-+ phone_id (string,required)
-+ bbt_id (string,required)
++ phone_id:123 (string,required)
++ bbt_id:123 (string,required)
 
 ## Profile (object)
 
@@ -86,12 +86,11 @@ A web API for Fenix project.
     
     + Attributes (Register)
     + Attributes
-        + email (string,required) - user's email, must unique.
-        + password (string,required) - hashed password came along with email.        + product_code (string,required) - the QRcode attached on product
+        + email:aaa@aaa (string,required) - user's email, must unique.
+        + password:dawkkopa (string,required) - hashed password came along with email.        + product_code (string,required) - the QRcode attached on product
     
 
 + Response 200 (application/json)
-    
 
     + Attributes (Status)
     + Attributes 
