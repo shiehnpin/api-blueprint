@@ -60,6 +60,11 @@ A web API for Fenix project.
 
 + status:ok (string,required) - the resutl status(ok or err)
 
+## Error (object)
+
++ error_code:102 (string,required)
++ description:something goes wrong (string,required)
+
 ## Register (object)
 
 + type:basic (string,required) - register type(basic,facebook,wechat)
@@ -82,7 +87,7 @@ A web API for Fenix project.
 註冊會員資料。
 
 
-+ Request (application/json)
++ Request Success Register (application/json)
     
     + Attributes (Register)
     + Attributes
@@ -98,20 +103,17 @@ A web API for Fenix project.
         + secret:123 (string,required)
         + activated_at:`2015-01-02T15:04:05Z` (string,required)
 
-+ Request (application/json)
-    
+
++ Request Fail Register (application/json)
+
     + Attributes
         + email:aaa@aaa (string,required) - user's email, must unique.
         + password:dawkkopa (string,required) - hashed password came along with email.        + product_code (string,required) - the QRcode attached on product
     
-     
-+ Response 200
++ Response 200 (application/json)
 
-        {
-            "status": "bad",
-            "error_code": 102,
-            "description": "required data is missing"
-        }
-
+    + Attributes (Status)
+    
+    + Attributes (Error)
 
 
