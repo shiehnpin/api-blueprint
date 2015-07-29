@@ -58,7 +58,7 @@ A web API for Fenix project.
 
 ## Status (object)
 
-+ status:ok (string)
++ status:ok (string,required) - the resutl status(ok or err)
 
 ## Profile (object)
 
@@ -97,8 +97,10 @@ A web API for Fenix project.
 
 + Response 200 (application/json)
     
-    + Attributes
-        + Status (object)
+    + Attributes (Status)
+    + Attributes 
+        + uuid:123 (string,required) 
+        + secret:123 (string,required)
 
   
 + Request (application/json) 
