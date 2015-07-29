@@ -270,35 +270,36 @@ A web API for Fenix project.
             Authorization: 123:digest
 
 + Response 200 (application/json)
+ 
 
-        + Attributes (Status)
-
-        + Body
-
+     
             {
-                "2015-01-02":{
-                    "measured_date":"2015-01-02",
-                    "created_at":"2006-01-02T15:04:05Z",
-                    "modified_at":"2006-01-02T15:04:05Z",
-                    "degrees":3700,         
-                    "measured_at":"2006-01-02T15:04:05Z",
-                    "is_from_bbt":true,
-                    "is_medicine":true,
-                    "is_alcohol":true,
-                    "is_fever":true,
-                    "is_sex":true,
-                    "note":"say something..."
-                },
-                "2015-01-03":{
-                    "measured_date":"2015-01-03",
-                    "created_at":"2006-01-03T15:04:05Z",
-                    "modified_at":"2006-01-03T15:04:05Z",
-                    "degrees":3680,         
-                    "measured_at":"2006-01-03T15:04:05Z",
-                    "is_from_bbt":true,
-                    "is_medicine":false,
-                    "is_alcohol":false,
-                    "is_fever":true,
-                    "is_sex":true
+                "status":"ok",
+                "records":{
+                    "2015-01-02":{
+                        "measured_date":"2015-01-02",
+                        "created_at":"2006-01-02T15:04:05Z",
+                        "modified_at":"2006-01-02T15:04:05Z",
+                        "degrees":3700,         
+                        "measured_at":"2006-01-02T15:04:05Z",
+                        "is_from_bbt":true,
+                        "is_medicine":true,
+                        "is_alcohol":true,
+                        "is_fever":true,
+                        "is_sex":true,
+                        "note":"say something..."
+                    },
+                    "2015-01-03":{
+                        "measured_date":"2015-01-03",
+                        "created_at":"2006-01-03T15:04:05Z",
+                        "modified_at":"2006-01-03T15:04:05Z",
+                        "degrees":3680,         
+                        "measured_at":"2006-01-03T15:04:05Z",
+                        "is_from_bbt":true,
+                        "is_medicine":false,
+                        "is_alcohol":false,
+                        "is_fever":true,
+                        "is_sex":true
+                    }
                 }
             }
