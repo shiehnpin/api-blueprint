@@ -32,7 +32,7 @@ A web API for Fenix project.
 檢查啟動碼是否啟用過。
 
 + Parameters
-    + product_code (string,required) 
+    + product_code:12aaa (string,required) 
 
 ### Get Product Code Status [GET]
 
@@ -261,6 +261,8 @@ A web API for Fenix project.
 
 同步溫度記錄。
 
++ Parameter
+    + member_id:123 (string)
 
 + Attributes 
     + id (string,required) - 唯一的識別。
@@ -348,19 +350,21 @@ A web API for Fenix project.
             }
         }
         
-## Sync Settings [/v1/member/{member_id}/settings]
+## Sync Setting [/v1/member/{member_id}/setting]
 
 同步BBT設定。
 
++ Parameter
+    + member_id:123 (string)
+    
 + Attributes
-    + phone_id (string,required) 
     + alarm_sound_vol:0 (number,required) - 0 as OFF, 1 as min, 2 as med, 3 as max 
     + alarm_at:"15:04:00" (string,required) - UTC time
     + is_backlight:true (boolean,required) 
     + sync_sound_vol:3 (number,required) - 0 as OFF, 1 as min, 2 as med, 3 as max
     + modified_at:`2006-01-02T15:04:05Z` (string,required)
 
-### Push Settings [POST]
+### Push Settings [PUT]
 
 + Request (application/json)
     
@@ -371,7 +375,6 @@ A web API for Fenix project.
 
 + Response 200 (application/json)
 
-    + Attributes (Status)
     + Body 
 
             {
@@ -386,15 +389,16 @@ A web API for Fenix project.
 
 + Request (application/json)
 
-    + Header
-
-            Authorization: 463346c80ec6f0cb0101b72db51d79f4a78c5999
+    + Headers
+    
+            Authorization: 123:digest
 
 
 + Response 200 (application/json)
 
 
             {
+                "status":"ok",
                 "alarm_sound_vol": 1,
                 "sync_sound_vol": 1,
                 "alarm_at":"12:55:00", 
