@@ -50,6 +50,46 @@ A web API for Fenix project.
               }
             }
 
+
+## Create Product Code [/v1/products]
+
+Create a code. **Only avaliable in Debug**
+
+### Post A Code [POST]
+
++ Request 
+
+    + Body 
+        
+            {"code":"debug-code3","type":"full"}
+            
+            
++ Response 200 (application/json)
+
+    + Body 
+    
+            {
+                 "status": "ok"
+            }
+            
+## Reset Product Code [/v1/products/{product_code}/reset]
+
+Reset a Code,if anyone use this code, it will be removed. **Only avaliable in Debug**
+
++ Parameters
+    + product_code:debug-code (string,required) 
+
+
+### Reset Code [GET]
+
++ Response 200 (application/json)
+    
+    + Body
+            {
+              "status": "ok"
+            }
+
+
 # Group Member
 
 ## Register [/v1/members]
