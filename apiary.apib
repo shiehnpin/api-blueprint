@@ -5,25 +5,6 @@ HOST: flame-dev.1n1.hk
 
 A web API for Fenix project.
 
-        
-# Data Structures
-
-## Status (object)
-
-+ status:ok (string,required) - the resutl status(ok or err)
-
-## Err (object)
-
-+ status:fail (string,required)
-+ error_code:102 (number,required) - aa
-+ description:something goes wrong (string,required) -aa
-
-## Register Info (object)
-
-+ product_code:123 (string,required)
-+ phone_id:123 (string,required)
-+ bbt_id:123 (string,required)
-
 # Group Service
 
 ## Service Status [/v1/status]
@@ -32,7 +13,16 @@ A web API for Fenix project.
 
 + Response 200 (application/json)
 
-    + Attributes (Status)
+    + Body
+    
+            {
+              "status": "ok",
+              "result": {
+                "version": "v1",
+                "mode": "release"
+              }
+            }
+
 
 # Group Product Code
 
@@ -47,11 +37,18 @@ A web API for Fenix project.
 
 + Response 200 (application/json)
 
-    + Attributes (Status)
-    + Attributes 
-        + type:full (string,required) `full`,`limited`,`upgrade`
-        + is_activated:true
-        + activated_at:`2006-01-02T15:04:05Z`
+    + Body 
+    
+            {
+              "status": "ok",
+              "result": {
+                "type": "full",
+                "code": "debug-code",
+                "issued_at": "2015-08-10T08:45:00Z",
+                "activated_at": "2015-08-11T07:29:59Z",
+                "activated_by": "5FE1EEA69376B035F998F6CA001CA74A4D3404B0"
+              }
+            }
 
 # Group Member
 
@@ -62,28 +59,52 @@ A web API for Fenix project.
 ### Register [POST]
 
 
-+ Request Success Register (application/json)
-    
-    + Attributes (Register Info)
-    + Attributes
-        + type:basic (string,required) - register type(basic,facebook,wechat)
-        + email:aaa@aaa (string,required) - user's email, must unique.
-        + password:dawkkopa (string,required) - hashed password came along with email.
++ Request Register (application/json)
+
+    + Body 
+        
+            {
+                "bbt_id":"bbt_id",
+                "email":"email",
+                "password":"password",
+                "phone_id":"phone_id",
+                "product_code":"debug-code",
+                "type":"basic"
+            }
+
     
 
 + Response 200 (application/json)
 
-    + Attributes (Status)
-    + Attributes 
-        + member_id:123 (string,required) 
-        + secret:123 (string,required)
-        + registered_at:`2015-01-02T15:04:05Z` (string,required)
+    + Body 
+    
+            {
+              "status": "ok",
+              "result": {
+                "user": {
+                  "member_id": "5FE1EEA69376B035F998F6CA001CA74A4D3404B0",
+                  "secret": "3CCF24FF8990E0B098B3B1A32E586D40A8EB550B",
+                  "phone_id": "phone_id",
+                  "product_code": "debug-code",
+                  "bbt_id": "bbt_id",
+                  "is_allow_migrate": true,
+                  "first_name": null,
+                  "last_name": null,
+                  "birthday": null,
+                  "registered_at": "2015-08-11T07:29:59Z",
+                  "modified_at": "2015-08-11T07:29:59Z",
+                  "synced_at": "2015-08-11T07:29:59Z"
+                },
+                "setting": {
+                  "member_id": "5FE1EEA69376B035F998F6CA001CA74A4D3404B0",
+                  "is_backlight": true,
+                  "alarm_sound_vol": 0,
+                  "alarm_at": "15:29:59",
+                  "sync_sound_vol": 1,
+                  "modified_at": "2015-08-11T07:29:59Z"
+                }
+            }
 
-+ Request Fail Register (application/json)
-
-+ Response 200 (application/json) 
-
-    + Attributes (Err)
 
 ## Login [/v1/login]
 
