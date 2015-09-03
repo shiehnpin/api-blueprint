@@ -155,6 +155,13 @@ A web API for Fenix project.
 +   phone_id：手機藍芽位址Hash Code，不可重複。
 +   product_code：QR碼，必須有效且是特定的類型(即`full`、`limited`擇一)。
 
+回傳包含兩塊資料，分別是使用者資料(User)和BBT資料(Setting)。
+
++   member_id：代表使用者的UniqueID，修改或讀取使用者資料都需要。
++   secret：必須記錄在本地端，用來產生讀寫資料的驗證簽名的材料。
++   is_allow_migrate：使用者是否具有移機的權力(即是否可修改phone_id)。
+
+
 ### Register [POST]
 
 
