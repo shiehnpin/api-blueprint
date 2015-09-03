@@ -122,7 +122,10 @@ A web API for Fenix project.
             
 ## Reset Product Code [/v1/products/{product_code}/reset]
 
-Reset a Code,if anyone use this code, it will be removed. **Only avaliable in Debug**
+重置QR碼，同時刪除啟用該QR碼的使用者(限limited、full兩類)。
+
+
+**本功能只適用於debug模式**
 
 + Parameters
     + product_code:debug-code (string,required) 
