@@ -253,6 +253,51 @@ HOST: https://flame-dev.1n1.hk
               }
             }
 
+# Group Restrict
+
+## Member Data [/v1/members/{member_id}]
+
+取得會員資料
+
+
++ Parameters
+    + member_id:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (string,required) 
+
+
+
+### Register [POST]
+
+
++ Request Register (application/json)
+
+    + Header
+        
+            Auth:`123`
+
+    
+
++ Response 200 (application/json)
+
+    + Body 
+    
+            {
+              "status": "ok",
+              "result": {
+                "member_id": "2B4B4DC24C1AFF38969ED40BB437152C7F4AA286",
+                "secret": "732C396277CFDC25214E1117C1C1AFEB79394EB7",
+                "phone_id": "83794F25A6BE589B7BD6095EBEAB84382E74882D",
+                "product_code": "1111111111111111111111111111111111111111",
+                "bbt_id": "2A4873F1D777525670FD406E9839FC3BD01DDCE0",
+                "is_allow_migrate": true,
+                "first_name": null,
+                "last_name": null,
+                "birthday": null,
+                "registered_at": "2015-08-07T01:59:05Z",
+                "modified_at": "2015-08-07T01:59:05Z",
+                "synced_at": "2015-08-07T02:38:43Z"
+              }
+            }
+
 
 
 
