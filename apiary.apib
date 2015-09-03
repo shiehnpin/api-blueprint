@@ -271,10 +271,10 @@ HOST: https://flame-dev.1n1.hk
 
 + last_name: 使用者的姓
 + firtst_name: 使用者的名
-+ birtyday: 使用者生日，格式`1988-12-15`
++ birtyday: 使用者生日，格式:`1988-12-15`
 
 
-+ Request Register (application/json)
++ Request (application/json)
 
     + Header
         
@@ -302,7 +302,38 @@ HOST: https://flame-dev.1n1.hk
                 "synced_at": "2015-08-07T02:38:43Z"
               }
             }
+            
+
+### Set User Data [PUT]
+
+修改會員資料，回傳最後修改的時間`modified_at`。
+
++ last_name: 使用者的姓
++ firtst_name: 使用者的名
++ birtyday: 使用者生日，格式:`1988-12-15`
+
+
++ Request (application/json)
+
+    + Header
+        
+            Authorization:member_id:nonce:digest
+
+    + Body 
+    
+            {  
+               "birthday":"1988-12-15",
+               "first_name":"First",
+               "last_name":"Last"
+            }
 
 
 
++ Response 200 (application/json)
 
+    + Body 
+    
+            {
+              "status": "ok",
+              "result": "2015-09-03T07:43:22Z"
+            }
