@@ -257,7 +257,7 @@ HOST: https://flame-dev.1n1.hk
 
 ## Member Data [/v1/members/{member_id}]
 
-取得會員資料
+取得或修改會員資料，可修改的欄位包含姓名及生日，`bbt_id`、`is_allow_migrate`或`phone_id`修改必須使用特殊的API。
 
 
 + Parameters
@@ -265,15 +265,14 @@ HOST: https://flame-dev.1n1.hk
 
 
 
-### Register [POST]
+### Get User Data [GET]
 
 
 + Request Register (application/json)
 
     + Header
         
-            Auth:`123`
-
+            Authorization:member_id:nonce:digest
     
 
 + Response 200 (application/json)
