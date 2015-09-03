@@ -22,6 +22,14 @@ HOST: https://flame-dev.1n1.hk
 ## 驗證簽名
 
 
+    簽名由三組材料加上Secret以HmacSHA1加密構成。
+    
++   Method：`GET`、`POST`、`PUT`、`DELETE`，皆大寫。
++   Uri：網址不含Domain部分，但含有Query，例如：`https://flame.1n1.hk/v1/members/login?type=basic` -> `/v1/members/login?type=basic`
++   Nonce：亂數，目前是使用時間戳記(Long)
++   Digest：簽名算法是Base64(HMAC(Secret,URLEncoding(`Method`+`Uri`+`Nonce`)))
+    
+    最終在送出的Reqest中塞入`Authorization`:`member_id`:`Nonce`:`Digest`，如果算錯會得到Http status 401。
 
 
 # Group Service
