@@ -257,7 +257,7 @@ HOST: https://flame-dev.1n1.hk
 
 ## Member Data [/v1/members/{member_id}]
 
-取得或修改會員資料，可修改的欄位包含姓名及生日，`bbt_id`、`is_allow_migrate`或`phone_id`修改必須使用特殊的API。
+取得或修改會員資料，可修改的欄位包含姓名及生日，`password`、`bbt_id`、`is_allow_migrate`或`phone_id`修改必須使用特殊的API。
 
 
 + Parameters
@@ -308,10 +308,77 @@ HOST: https://flame-dev.1n1.hk
 
 修改會員資料，回傳最後修改的時間`modified_at`。
 
-+ last_name: 使用者的姓
++ Request (application/json)
+
+    + Header
+        
+            Authorization:member_id:nonce:digest
+
+    + Body 
+    
+            {  
+               "birthday":"1988-12-15",
+               "first_name":"First",
+               "last_name":"Last"
+            }
+
+
+
++ Response 200 (application/json)
+
+    + Body 
+    
+            {
+              "status": "ok",
+              "result": "2015-09-03T07:43:22Z"
+            }
+            
+## BBT Setting [/v1/members/{member_id}/setting]
+
+取得或修改溫度計設定。
+
+
++ Parameters
+    + member_id:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (string,required) 
+
+
+
+### Get BBT Setting [GET]
+
+取得溫度計設定，注意Client端必須自行保證溫度計設定與資料相同
+
++ member_id: 使用者的姓
 + firtst_name: 使用者的名
 + birtyday: 使用者生日，格式:`1988-12-15`
 
+
++ Request (application/json)
+
+    + Header
+        
+            Authorization:member_id:nonce:digest
+    
+
++ Response 200 (application/json)
+
+    + Body 
+    
+            {  
+               "status":"ok",
+               "result":{  
+                  "member_id":"2B4B4DC24C1AFF38969ED40BB437152C7F4AA286",
+                  "is_backlight":true,
+                  "alarm_sound_vol":0,
+                  "alarm_at":"09:59:05",
+                  "sync_sound_vol":1,
+                  "modified_at":"2015-08-07T01:59:05Z"
+               }
+            }
+            
+
+### Set BBT Setting [PUT]
+
+修改會員資料，回傳最後修改的時間`modified_at`。
 
 + Request (application/json)
 
@@ -337,3 +404,4 @@ HOST: https://flame-dev.1n1.hk
               "status": "ok",
               "result": "2015-09-03T07:43:22Z"
             }
+
