@@ -3,42 +3,25 @@ HOST: https://flame-dev.1n1.hk
 
 # Fenix
 
-A web API for Fenix project.
+這是好孕來後端API的規格文件。
 
-## Common Attributes 
+## Hash定義
 
 + `bbt_id`溫度計ID
 
-    toUpper(sha1(toUpper(XX:XX:XX:XX:XX:XX_1N1_BBT)))
-
-    PlainText:
-    
-        XX:XX:XX:XX:XX:XX_1N1_BBT
-    Hash:
-    
-        56CDB9A741552F7EECB3FC215814A8B617B99E5D
+    toUpper(sha1(toUpper(`XX:XX:XX:XX:XX:XX_1N1_BBT`))) -> `56CDB9A741552F7EECB3FC215814A8B617B99E5D`
 
 + `phone_id` 手機ID
 
-    toUpper(sha1(toUpper(XX:XX:XX:XX:XX:XX_1N1_PHONE)))
-    
-    PlainText:
-    
-        XX:XX:XX:XX:XX:XX_1N1_PHONE
-    Hash:
-    
-        3879F289A08E2B62E4AF452183C600F0B91A1CAC
+    toUpper(sha1(toUpper(`XX:XX:XX:XX:XX:XX_1N1_PHONE`))) -> `3879F289A08E2B62E4AF452183C600F0B91A1CAC`
 
-+ `product_code` 產品代碼
++ `product_code` QR碼
 
-    隨產品附的`product_code`，algorithm=`toUpper(sha1(haoyunlai_SN))`
-    
-    PlainText:
-    
-        haoyunlai_1
-    Hash:
-    
-        AFC4E7CCABD9583DCA2F563DB1A9419A39E817D0
+    toUpper(sha1(toUpper(`HAOYUNLAI_1`))) -> `5F57F95690CA722BB5278DA4FF31536572C73A0B`
+        
+## 驗證簽名
+
+
 
 
 # Group Service
@@ -261,5 +244,7 @@ A web API for Fenix project.
                 }
               }
             }
+
+
 
 
