@@ -347,9 +347,11 @@ HOST: https://flame-dev.1n1.hk
 
 取得溫度計設定，注意Client端必須自行保證溫度計設定與資料相同
 
-+ member_id: 使用者的姓
-+ firtst_name: 使用者的名
-+ birtyday: 使用者生日，格式:`1988-12-15`
++ is_backlight:true，是否開啟背光
++ alarm_sound_vol:0，鬧鐘音量(0:off、1:small、2:medium、3:Loud)
++ alarm_at:09:59:00，鬧鐘時間(有效至分)
++ sync_sound_vol:1，同步音音量(0:off、1:small、2:medium、3:Loud)
++ modified_at:`2015-08-07T01:59:05Z`，上次修改設定時間
 
 
 + Request (application/json)
@@ -369,7 +371,7 @@ HOST: https://flame-dev.1n1.hk
                   "member_id":"2B4B4DC24C1AFF38969ED40BB437152C7F4AA286",
                   "is_backlight":true,
                   "alarm_sound_vol":0,
-                  "alarm_at":"09:59:05",
+                  "alarm_at":"09:59:00",
                   "sync_sound_vol":1,
                   "modified_at":"2015-08-07T01:59:05Z"
                }
