@@ -93,9 +93,17 @@ A web API for Fenix project.
 
 ## Create Product Code [/v1/products]
 
-Create a code. **Only avaliable in Debug**
+產生QR碼，code長度為40byte，type有四種
 
-### Post A Code [POST]
++ `full`可以移機的版本。
++ `limited`不可移機的版本。
++ `upgrade`升級版本，將不可移機版本提升至可移機。
++ `replace`提供更換BBT的QR碼。
+
+
+**本功能只適用於debug模式**
+
+### Post Product Code [POST]
 
 + Request 
 
