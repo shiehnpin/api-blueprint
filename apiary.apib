@@ -345,7 +345,7 @@ HOST: https://flame-dev.1n1.hk
 
 ### Get BBT Setting [GET]
 
-取得溫度計設定，注意Client端必須自行保證溫度計設定與資料相同
+取得溫度計設定，註冊時也會傳回一組預設值。
 
 + is_backlight:true，是否開啟背光
 + alarm_sound_vol:0，鬧鐘音量(0:off、1:small、2:medium、3:Loud)
@@ -380,7 +380,7 @@ HOST: https://flame-dev.1n1.hk
 
 ### Set BBT Setting [PUT]
 
-修改會員資料，回傳最後修改的時間`modified_at`。
+修改溫度計設定，注意Client端必須自行保證溫度計設定與資料相同，回傳溫度計的上次修改時間`modified_at`。
 
 + Request (application/json)
 
@@ -391,9 +391,12 @@ HOST: https://flame-dev.1n1.hk
     + Body 
     
             {  
-               "birthday":"1988-12-15",
-               "first_name":"First",
-               "last_name":"Last"
+               "alarm_at":"09:59:00",
+               "modified_at":"2015-08-07T01:59:05Z",
+               "member_id":"2B4B4DC24C1AFF38969ED40BB437152C7F4AA286",
+               "is_backlight":false,
+               "alarm_sound_vol":0,
+               "sync_sound_vol":0
             }
 
 
