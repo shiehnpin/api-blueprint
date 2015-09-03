@@ -161,6 +161,7 @@ A web API for Fenix project.
 +   secret：必須記錄在本地端，用來產生讀寫資料的驗證簽名的材料。
 +   is_allow_migrate：使用者是否具有移機的權力(即是否可修改phone_id)。
 
+其餘欄位在後面的部分解釋。
 
 ### Register [POST]
 
@@ -212,10 +213,13 @@ A web API for Fenix project.
             }
 
 
-## Login [/v1/login]
-
+## Login [/v1/login{?type}]
+    
 註冊會員資料。
 
++ Parameters
+    + type:basic (string,required) 
+    
 ### Login [POST]
 
 
