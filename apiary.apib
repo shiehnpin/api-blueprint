@@ -122,7 +122,7 @@ A web API for Fenix project.
             
 ## Reset Product Code [/v1/products/{product_code}/reset]
 
-重置QR碼，同時刪除啟用該QR碼的使用者(限limited、full兩類)。
+重置QR碼，同時刪除啟用該QR碼的使用者(限`limited`、`full`兩類)。
 
 
 **本功能只適用於debug模式**
@@ -146,7 +146,14 @@ A web API for Fenix project.
 
 ## Register [/v1/members]
 
-註冊會員資料。
+註冊會員資料，目前只支援一般(`basic`)帳戶註冊，請填入下列資料：
+
++   bbt_id：溫度計Hash Code，長40byte
++   type:目前只支援`basic`，即用email/passowrd帳戶登入， **type是`basic`時，必須帶`email`、`passwrod`兩個欄位**。 
++   email：必須符合Email的正規表達式， **特別注意帳戶是區分大小寫的**，登入時也必須要輸入正確的資料。
++   password：密碼，請自行Hash過後上傳，後端僅驗證兩者是否相同。
++   phone_id：手機藍芽位址Hash Code，不可重複。
++   product_code：QR碼，必須有效且是特定的類型(即`full`、`limited`擇一)。
 
 ### Register [POST]
 
