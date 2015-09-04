@@ -332,7 +332,31 @@ HOST: https://flame-dev.1n1.hk
               "status": "ok",
               "result": "2015-09-03T07:43:22Z"
             }
-            
+
+## Modified Password [/v1/members/{member_id}/password{?type}]
+
+修改使用者密碼，Server端不需驗證舊的密碼，Client端自行確認後進行Hash。
+
++ Parameters
+    + member_id:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (string,required) 
+    + type:basic (string,required)
+
+
+### Change Password [PUT]
+
++ Request (application/json)
+
+    + Header
+        
+            Authorization:member_id:nonce:digest
+
+    + Body
+    
++ Response 200 (application/json)
+
+    + Body
+    
+
 ## BBT Setting [/v1/members/{member_id}/setting]
 
 取得或修改溫度計設定。
