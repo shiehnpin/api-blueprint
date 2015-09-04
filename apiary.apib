@@ -414,14 +414,16 @@ HOST: https://flame-dev.1n1.hk
 
 編輯經期資料，資料筆數必須是成對的，每一組日期是由兩組資料構成，開頭的`is_type_started`為`true`，結尾則是`false`。
 
-
++ Parameters
+    + member_id:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (string,required) 
+    
 ### Update Menses Period [PUT]
 
 上傳目前的經期資料， **每次上傳成功後會把舊的資料清除**，意思是每次都必須上傳全部的經期資料，因為前次的資料不會保留。
 
 + date_at：日期，使用者的經期資料是參照日期的，因此不會有重複的日期。
 + is_type_started：是否是起始日，`true`代表是經期開始，反之則是結束。
-+ is_human_input：是否由使用者輸入的資料。
++ is_human_input：是否由使用者輸入的資料，或是由APP預測。
 + is_init：Deprecated。
 
 伺服器收到後會回傳上傳的資料筆數( **String，未來會換回`Synced_at`**)。
@@ -496,7 +498,31 @@ HOST: https://flame-dev.1n1.hk
 ## Temperature Records [/v1/members/{member_id}/records]
 
 
+修改使用者體溫資料，每一組資料的`measured_date`都是唯一的，由Client端確保`created_at`和`modified_at`，資料包含以下欄位：
+
+
++ measured_date:`2015-07-03`，資料的所屬日期
++ member_id:770DA6030E0F0E44B8B3D0BE219564081EB4BAA3，使用者Unique ID
++ is_sex:false，是否行房
++ is_medicine:false，是否吃藥
++ is_from_bbt:false，是否由BBT量測
++ is_fever:false，是否發燒
++ is_alcohol:false，是否喝酒
++ degress:0，溫度( **整數，請自行轉換**)
++ note:備註記錄
++ measured_at:`2015-07-03T00:00:00Z`，量測時間(由BBT取得)
++ modified_at:`2015-07-03T00:00:00Z`，最後修改的時間
++ created_at:`2015-07-03T00:00:00Z`，資料建立時間，通常是由使用者手動輸入或BBT同步的時間。
+
+
++ Parameters
+    + member_id:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (string,required) 
+    
+
 ### Update Records [PUT]
+
+上傳使用者體溫資料，資料形式為Map，以日期`YYYY-MM-DD`為Key，資料本身為Value。
+
 
 + Request (application/json)
 
