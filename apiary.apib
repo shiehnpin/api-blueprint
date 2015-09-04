@@ -335,7 +335,8 @@ HOST: https://flame-dev.1n1.hk
 
 ## Modified Password [/v1/members/{member_id}/password{?type}]
 
-修改使用者密碼，Server端不需驗證舊的密碼，Client端自行確認後進行Hash。
+修改使用者密碼(限`basic`帳戶，即使用email/passsword登入者)，Server端不驗證舊的密碼，Client端自行確認後進行Hash。
+
 
 + Parameters
     + member_id:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (string,required) 
@@ -351,10 +352,18 @@ HOST: https://flame-dev.1n1.hk
             Authorization:member_id:nonce:digest
 
     + Body
+            
+            {
+                "password":"1234567"
+            }
     
 + Response 200 (application/json)
 
     + Body
+    
+            {
+              "status": "ok"
+            }
     
 
 ## BBT Setting [/v1/members/{member_id}/setting]
