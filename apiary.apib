@@ -586,3 +586,67 @@ HOST: https://flame-dev.1n1.hk
               "result": "2015-09-04T07:39:22Z"
             }
 
+### Retrival Records [GET]
+
+取得使用者體溫紀錄資料，形式為一A
+
++ Request (application/json)
+
+    + Header
+        
+            Authorization:member_id:nonce:digest
+            
+            
++ Response 200 (application/json)
+
+    + Body 
+    
+            {  
+               "status":"ok",
+               "result":[  
+                  {  
+                     "member_id":"770DA6030E0F0E44B8B3D0BE219564081EB4BAA3",
+                     "measured_date":"2015-07-08",
+                     "created_at":"2015-07-08T00:00:00Z",
+                     "modified_at":"2015-07-08T00:00:00Z",
+                     "degrees":null,
+                     "measured_at":"2015-07-08T00:00:00Z",
+                     "is_medicine":false,
+                     "is_alcohol":false,
+                     "is_fever":false,
+                     "is_sex":false,
+                     "is_from_bbt":false,
+                     "note":null
+                  },
+                  {  
+                     "member_id":"770DA6030E0F0E44B8B3D0BE219564081EB4BAA3",
+                     "measured_date":"2015-07-01",
+                     "created_at":"2015-07-01T00:00:00Z",
+                     "modified_at":"2015-07-01T00:00:00Z",
+                     "degrees":null,
+                     "measured_at":"2015-07-01T00:00:00Z",
+                     "is_medicine":false,
+                     "is_alcohol":false,
+                     "is_fever":false,
+                     "is_sex":false,
+                     "is_from_bbt":false,
+                     "note":null
+                  },
+                  {  
+                     "member_id":"770DA6030E0F0E44B8B3D0BE219564081EB4BAA3",
+                     "measured_date":"2015-07-03",
+                     "created_at":"2015-07-03T00:00:00Z",
+                     "modified_at":"2015-07-03T00:00:00Z",
+                     "degrees":null,
+                     "measured_at":"2015-07-03T00:00:00Z",
+                     "is_medicine":false,
+                     "is_alcohol":false,
+                     "is_fever":false,
+                     "is_sex":false,
+                     "is_from_bbt":false,
+                     "note":null
+                  }
+               ]
+            }
+
+
