@@ -521,7 +521,9 @@ HOST: https://flame-dev.1n1.hk
 
 ### Update Records [PUT]
 
-上傳使用者體溫資料，資料形式為Map，以日期`YYYY-MM-DD`為Key，資料本身為Value。
+上傳使用者體溫資料，資料形式為Map，以日期`YYYY-MM-DD`為Key，資料本身為Value，上傳成功後回傳最後同步時間`synced_at`。
+
+**value = `null` 代表刪除該筆資料。
 
 
 + Request (application/json)
