@@ -410,3 +410,44 @@ HOST: https://flame-dev.1n1.hk
               "result": "2015-09-03T07:43:22Z"
             }
 
+## Menses Periods [/v1/members/{member_id}/periods]
+
+編輯經期資料，資料筆數必須是成對的，每一組日期是由兩組資料構成，開頭的`is_type_started`為`true，結尾則是`false`。
+
+
+### Update Period [PUT]
+
+上傳目前的經期資料，**每次上傳成功後會把舊的資料清除**，意思是每次都必須上傳全部的經期資料，因為前次的資料不會保留。
+
++ date_at：日期，使用者的經期資料是參照日期的，因此不會有重複的日期。
++ is_type_started：是否是起始日，`true`代表是經期開始，反之則是結束。
++ is_human_input：是否由使用者輸入的資料。
+
+伺服器收到後會回傳上傳的資料筆數(String，未來會換回`Synced_at`)。
+
++ Request (application/json)
+
+    + Body
+            
+            [  
+               {  
+                  "date_at":"2015-07-01",
+                  "is_type_started":true,
+                  "is_human_input":false
+               },
+               {  
+                  "date_at":"2015-07-03",
+                  "is_type_started":false,
+                  "is_human_input":false
+               }
+            ]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {  
+                "status":"ok",
+                "result":"2"
+            }   
+
