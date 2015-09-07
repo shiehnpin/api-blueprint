@@ -682,4 +682,33 @@ HOST: https://flame-dev.1n1.hk
                ]
             }
 
+# Group Misc
 
+## Report [/v1/report]
+
+傳遞資訊(除錯用)，`email`表是使用者的帳戶、`type`表示Log記錄的類別(可自訂)；`log`的部分則是將`plain_text`通過演算法產生：
+`log`=base64(gzip(`plain_text`))。
+
+### Upload Log [POST]
+
++ Request (applicaton/json)
+
+    + Body 
+    
+            {  
+                "email":"test@test.com",
+                "log":"H4sIAAAAAAAAAO2YUW+bMBDHn9tPcY+JRKIzwY3hbWNsqlQlVVppmqIoAmMraC1MQNpNS7/77EJG\nthJNSSGRujzYh8H+/87ns0GM79Mkfn/lXaeJjO4EOPAzFX74A/IEeBLHXOQQioeIi6nqld37aT5H\nRKqKiR4ydKnLbDRn0HE9B5mDrkNdh9kOmt2n8/EL+TDKePIgUkj0I8hEqsWh3+/XdOaLaTBAOoPV\naHx7+fHLauK9+7D6PLm89Yp6PhrPJ97N9Xh0461qBM5CkfE0+pYnaQZT1F4rZ3v6okd0xXSFah5U\n2sHAksGs3o0woIFyYwe0GiQwYDsPQl+QnQcR3GOQZRPzr9C2GUIrxOCAOEpMdkjcBcoD4hijG7Nr\njbR9t0KYxOJ8upzB1ScPRuL7MgMKHRMJ7SHrmQyI6RB0TNpXkG6NdiZyd+GnPs9FGmV5xEdJHsmI\n+3mkUNMknoFM0ipRoww62ZJzkWWvlHtOxMbkikRrTu45kRqTK87Pf8g9plEu3EXVXy9w8hU6aBqA\n+LpSBzzrPHahZDUCqWXEFYO1NJGDR64WKP3orj3kPhtVeyTCN730b+/82r5ozabASe2kdlI7strv\nQ6QJtWbPkOoTqAm16gtou9oR3qonpBpiqsKJAQNpwJAaEDBVLAPkhQG+comoe9xW95QNVT+png9U\nmwwNEOF+72Up902N4ifAxgzYyyCQtWX13um/K4VasZ/XanuQSUlVlpax1O1h++Tjzfl/jPYG2dLt\nMg5Wq2RSEnlpbSzJsrCEK6uLr3akajNSrYrgh/TMX3tG/oyVtlJ7u3G0Mav11ZJbDsjhjuRf40PY\n+ZoVAAA\u003d\n",
+                "type":"ble"
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+              "status": "ok",
+              "result": {
+                "version": "v1",
+                "mode": "release"
+              }
+            }
