@@ -442,6 +442,30 @@ HOST: https://flame-dev.1n1.hk
               "status": "ok",
               "result": "2015-09-03T07:43:22Z"
             }
+            
+## Replace BBT [/v1/members/{member_id}/setting/replace]
+
+更換BBT，需要一組`replace`的
+
+### Replace New BBT [POST]
+
++ Request (application/json)
+
+    + Body 
+        
+            {  
+               "bbt_id":"bbt_id_replace",
+               "product_code":"replace-code"
+            }
+
++ Response 200 (application/json)
+
+    + Body 
+    
+            {
+              "status": "ok"
+            }
+            
 
 ## Menses Periods [/v1/members/{member_id}/periods]
 
@@ -681,6 +705,7 @@ HOST: https://flame-dev.1n1.hk
                   }
                ]
             }
+
 
 # Group Misc
 
