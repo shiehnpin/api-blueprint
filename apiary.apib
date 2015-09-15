@@ -738,6 +738,37 @@ HOST: https://flame-dev.1n1.hk
                 "status": "ok"
             }
 
+## Migrate Member [/v1/members/{member_id}/migrate]
+
+移機，修改`phone_id`讓使用者可以在新手機上使用APP，請求包含新的`phone_id`。
+
++ Parameters
+    + member_id:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (string,required) 
+
+### Change Phone [POST]
+
++ Request (application/json)
+
+    + Header
+        
+            Authorization:member_id:nonce:digest
+
+    + Body 
+    
+            {  
+                "phone_id":"new_hphone_id"
+            }
+    
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+              "status": "ok",
+              "result": "2015-09-15T03:26:07Z"
+            }
+
 
 
 # Group Misc
