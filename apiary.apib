@@ -645,7 +645,7 @@ HOST: https://flame-dev.1n1.hk
 
 ### Retrival Records [GET]
 
-取得使用者體溫紀錄資料，形式為Array，如果資料庫無資料會取得一個空陣列`[]`。
+取得使用者體溫紀錄資料，形式為陣列內含所有使用者的體溫資料，如果無資料會取得一個空陣列`[]`。
 
 + Request (application/json)
 
@@ -709,9 +709,19 @@ HOST: https://flame-dev.1n1.hk
 
 ## Upgrade Member [/v1/members/{member_id}/upgrade]
 
+升級使用者帳戶(從`limited`變為`full`)，升級後使用者的帳戶屬性`Is_allow_migrate`會改變為`true`。
+
++ Parameters
+    + member_id:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (string,required) 
+
 ### Upgrade Request [POST]
 
 + Request (application/json) 
+
+
+    + Header
+        
+            Authorization:member_id:nonce:digest
 
     + Body 
     
