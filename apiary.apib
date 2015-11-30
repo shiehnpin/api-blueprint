@@ -134,6 +134,32 @@ HOST: https://flame-dev.1n1.hk
 
 
 # Group Member
+## Check Email Avaliable [/v1/checkemail]
+
+檢查email是否已經被使用過。
+
+
+### Check Email [POST]
+
++ Request (application/json)
+
+    + Body
+            
+            {
+                "email":"shieh.npin@gmaail.com"
+            }
+    
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "status": "ok",
+                "result":
+                {
+                        "is_registered":false
+                }
+            }
 
 ## Register [/v1/members]
 
