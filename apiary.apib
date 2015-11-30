@@ -146,7 +146,7 @@ HOST: https://flame-dev.1n1.hk
     + Body
             
             {
-                "email":"shieh.npin@gmaail.com"
+                "email":"shieh.npin@gmail.com"
             }
     
 + Response 200 (application/json)
@@ -159,6 +159,29 @@ HOST: https://flame-dev.1n1.hk
                 {
                         "is_registered":false
                 }
+            }
+            
+## Reset Password [/v1/member/reset]
+
+重新發送密碼。
+
+
+### Send New Password [POST]
+
++ Request (application/json)
+
+    + Body
+            
+            {
+                "email":"shieh.npin@gmail.com"
+            }
+    
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "status": "ok"
             }
 
 ## Register [/v1/members]
